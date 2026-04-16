@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Método do Sono Tranquilo</title>
+
+    <!-- Modern Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Reset & Custom Properties */
+        :root {
+            --bg-deep: #070B14;
+            --bg-navy: #0F172A;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-light: #F8FAFC;
+
+            --primary-gold: #F59E0B;
+            --primary-orange: #EA580C;
+            --gradient-gold: linear-gradient(135deg, #FCD34D, #F59E0B);
+            --gradient-btn: linear-gradient(135deg, #F59E0B, #EA580C);
+            --gradient-dark: linear-gradient(to bottom, #0F172A, #1E1B4B);
+
+            --text-main: #F1F5F9;
+            --text-muted: #CBD5E1;
+            --text-dark: #1E293B;
+
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 30px rgba(245, 158, 11, 0.3);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2;
+            text-wrap: balance;
+        }
+
+        p {
+            text-wrap: pretty;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Layout & Utilities */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .wrap {
+            flex-wrap: wrap;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        /* Typography Gradients */
+        .text-gradient {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-dark {
+            background: linear-gradient(135deg, #E2E8F0, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 25px rgba(245, 158, 11, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Premium Buttons */
+        .btn-cta {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--gradient-btn);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: var(--shadow-glow);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .btn-cta {
+                width: 100%;
+                font-size: 1.1rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glass);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ================= SECTIONS ================= */
+
+        /* 1. Hero Section */
+        .hero {
+            padding: 6rem 0 5rem;
+            background-image: url('https://patriciaroberta.com.br/wp-content/uploads/2024/12/bg1.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 65%, var(--bg-deep) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(7, 11, 20, 0.5) 0%, rgba(7, 11, 20, 0.9) 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 400;
+        }
+
+        .hero-mockup {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 4rem 0 2rem; }
+            .hero p { margin-bottom: 1.5rem; }
+            .hero-mockup { margin-bottom: 1.5rem; width: 85%; }
+            .btn-cta { font-size: 1.1rem; padding: 1rem 1.5rem; }
+        }
+
+        /* 2. Problem Section */
+        .problem-section {
+            background-image: url('https://patriciaroberta.com.br/wp-content/uploads/2024/12/BG2-1.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 9rem 0;
+            color: var(--text-main);
+        }
+
+        .problem-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--bg-deep) 0%, rgba(15, 23, 42, 0.95) 25%, rgba(15, 23, 42, 0.95) 75%, #0F172A 100%);
+        }
+
+        .problem-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .symptom-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-glass);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .symptom-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .symptom-card i {
+            color: var(--primary-orange);
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .symptom-card p {
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        /* 3. Intro / Empathy Section */
+        .intro-section {
+            background: var(--gradient-dark);
+            padding: 9rem 0;
+            text-align: center;
+        }
+
+        .carousel-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 1rem 0;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        .carousel-wrapper img {
+            border-radius: 20px;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            box-shadow: var(--shadow-glass);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-wrapper {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+            }
+
+            .carousel-wrapper::-webkit-scrollbar {
+                display: none;
+            }
+
+            .carousel-wrapper img {
+                width: 85%;
+                flex-shrink: 0;
+                scroll-snap-align: center;
+                height: 250px;
+            }
+        }
+
+        .intro-section h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-align: left;
+        }
+
+        .feature-box i {
+            font-size: 2rem;
+            color: var(--primary-gold);
+        }
+
+        .feature-box p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* 4. What you learn */
+        .learn-section {
+            background: linear-gradient(to bottom, #1E1B4B 0%, var(--bg-deep) 30%, var(--bg-deep) 100%);
+            padding: 9rem 0;
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .learn-card {
+            text-align: center;
+            padding: 2rem 1.2rem;
+        }
+
+        .learn-card img {
+            width: 110px;
+            height: auto;
+            margin: 0 auto 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .learn-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .learn-card h4 {
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* 5. Testimonials */
+        .testimonials-section {
+            background: linear-gradient(to bottom, var(--bg-deep) 0%, #0B1224 25%, #0B1224 75%, #0F172A 100%);
+            padding: 9rem 0;
+            color: var(--text-main);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-item {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-glass);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-item::before {
+            content: '\201C';
+            font-family: 'Outfit', sans-serif;
+            font-size: 6rem;
+            color: rgba(245, 158, 11, 0.15);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .stars {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-item p {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-item h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        /* 6. Bonuses */
+        .bonuses-section {
+            background: var(--gradient-dark);
+            padding: 9rem 0;
+        }
+
+        .bonus-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .bonus-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add a subtle glow behind bonuses */
+        .bonus-item::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(245, 158, 11, 0.15);
+            filter: blur(50px);
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .bonus-item img, .bonus-icon-wrapper {
+            width: 35%;
+            border-radius: 16px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bonus-content {
+            width: 65%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bonus-tag {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--primary-gold);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .bonus-content h4 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .bonus-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .bonus-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .bonus-item img,
+            .bonus-icon-wrapper,
+            .bonus-content {
+                width: 100%;
+            }
+        }
+
+        /* 7. Pricing */
+        .pricing-section {
+            background: linear-gradient(to bottom, #1E1B4B 0%, var(--bg-deep) 30%, var(--bg-deep) 100%);
+            padding: 9rem 0 10rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glowing top border effect */
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-gold);
+        }
+
+        .pricing-card h3 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-image {
+            max-width: 70%;
+            margin: 0 auto 3rem;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        .value-stack {
+            text-align: left;
+            margin: 0 auto 3rem;
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .value-stack h4 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .value-item i {
+            color: #10B981;
+            /* Success Green */
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .strike-price {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .final-price {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #10B981;
+            font-family: 'Outfit', sans-serif;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .final-price span {
+            font-size: 2rem;
+            vertical-align: top;
+        }
+
+        .garantia {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .garantia i {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .pricing-image {
+                max-width: 100%;
+            }
+
+            .final-price {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Responsive Grids Control for explicit columns */
+        @media (max-width: 1024px) {
+            .symptoms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .intro-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .learn-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin-inline: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .symptoms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+
+            .learn-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. Hero Section -->
+    <section class="hero text-center">
+        <div class="container relative z-10 fade-in">
+            <h1 class="text-gradient">O Método Comprovado Para Fazer <br>Seu Bebê Dormir A Noite Toda</h1>
+            <p>Descubra o segredo baseado na ciência para noites tranquilas. Devolva a paz para a sua família sem deixar
+                seu filho chorando, respeitando o ritmo natural dele.</p>
+
+            <img src="assets/mockup.png" class="hero-mockup floating">
+
+            <a href="#comprar" class="btn-cta">Quero Dormir Melhor Hoje</a>
+        </div>
+    </section>
+
+    <!-- 2. Problem Section -->
+    <section class="problem-section">
+        <div class="container relative z-10 fade-in">
+            <div class="text-center mx-auto" style="max-width: 800px;">
+                <h2 class="problem-title text-gradient-dark">As noites viraram um verdadeiro pesadelo?</h2>
+                <p style="font-size: 1.2rem; font-weight: 500;">Você se sente exausta e já não sabe mais o que tentar.
+                    As madrugadas em claro cobram um preço alto da sua saúde, da sua paciência e do seu relacionamento.
+                    Saiba de uma coisa: <strong>você não está sozinha.</strong></p>
+            </div>
+
+            <div class="symptoms-grid">
+                <div class="symptom-card">
+                    <i class="fas fa-times-circle"></i>
+                    <p>Você acorda de hora em hora e se sente um verdadeiro zumbi no dia seguinte pela falta de energia.
+                    </p>
+                </div>
+                <div class="symptom-card">
+                    <i class="fas fa-times-circle"></i>
+                    <p>O bebê só adormece no colo, peito ou balançando. Ao tentar colocá-lo no berço, ele desperta na
+                        hora.</p>
+                </div>
+                <div class="symptom-card">
+                    <i class="fas fa-times-circle"></i>
+                    <p>Você perdeu as contas de quantas vezes precisa levantar para devolver a chupeta caída durante a
+                        madrugada.</p>
+                </div>
+                <div class="symptom-card">
+                    <i class="fas fa-times-circle"></i>
+                    <p>Você não tem mais tempo para si mesma. Cuidar de você ou ter um momento a dois parece uma tarefa
+                        impossível.</p>
+                </div>
+                <div class="symptom-card">
+                    <i class="fas fa-times-circle"></i>
+                    <p>A ansiedade ataca só de ver a noite chegando, imaginando a longa jornada que terá pela frente.
+                    </p>
+                </div>
+                <div class="symptom-card">
+                    <i class="fas fa-check-circle" style="color: #10B981;"></i>
+                    <p><strong>Pare de se sentir culpada por não saber o que o seu filho precisa. Você não precisa escolher entre o seu descanso e o bem-estar do seu bebê.</strong></p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" style="margin-top: 3rem;">
+                <a href="#comprar" class="btn-cta">Existe Uma Solução (Ver Agora)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Intro Section -->
+    <section class="intro-section">
+        <div class="container fade-in">
+            <h2>Acredite: <span class="text-gradient">você não precisa</span> enfrentar isso sozinha.</h2>
+            <p class="mx-auto text-muted mb-10" style="max-width: 700px; font-size: 1.1rem;">Com pequenos ajustes no
+                ambiente, na rotina e nas sinalizações naturais do seu filho, o sono dele vai se transformar. O descanso
+                da sua família está a um passo de distância.</p>
+
+            <div class="carousel-wrapper">
+                <img src="assets/mae-cansada-madrugada.jpg" alt="Mãe e Bebê Acordados na Madrugada">
+                <img src="assets/bebe-dormindo-berco.jpg" alt="Bebê Adormecendo Suavemente no Berço">
+                <img src="assets/mae-descansada-feliz.jpg" alt="Mãe Feliz, Disposta e Descansada">
+            </div>
+
+            <div class="text-center" style="margin-top: 4rem;">
+                <h3 style="font-size: 2rem; margin-bottom: 2rem;">O que você encontrará no Guia Definitivo:</h3>
+
+                <div class="intro-features">
+                    <div class="feature-box">
+                        <i class="fas fa-moon"></i>
+                        <p>Técnicas comprovadas para fazer seu bebê adormecer rápido e em paz.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-home"></i>
+                        <p>Passo a passo para criar o ambiente de sono escuro e perfeito.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-brain"></i>
+                        <p>Explicações visuais e simples sobre a ciência do sono infantil.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-heart"></i>
+                        <p>Transformação real de forma 100% natural e humanizada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. What you'll learn -->
+    <section class="learn-section">
+        <div class="container text-center fade-in">
+            <h2 class="text-gradient" style="font-size: 2.5rem;">Descubra o Poder de Noites Restauradoras</h2>
+
+            <div class="learn-grid">
+                <div class="learn-card glass-card">
+                    <div style="width: 90px; height: 90px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 1.5rem; box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); transform: rotate(-3deg);">
+                        <i class="fas fa-magic" style="font-size: 2.4rem; color: var(--primary-gold); transform: rotate(3deg);"></i>
+                    </div>
+                    <h4>Técnicas Comprovadas</h4>
+                    <p class="text-muted">Desarme a agitação e ajude seu bebê a adormecer em minutos, sem estresse.</p>
+                </div>
+                <div class="learn-card glass-card">
+                    <div style="width: 90px; height: 90px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 1.5rem; box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); transform: rotate(3deg);">
+                        <i class="fas fa-cloud-moon" style="font-size: 2.4rem; color: var(--primary-gold); transform: rotate(-3deg);"></i>
+                    </div>
+                    <h4>Ambiente Ideal</h4>
+                    <p class="text-muted">Controle iluminação, temperatura e uso de ruído branco de forma estratégica.
+                    </p>
+                </div>
+                <div class="learn-card glass-card">
+                    <div style="width: 90px; height: 90px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 1.5rem; box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); transform: rotate(-3deg);">
+                        <i class="fas fa-brain" style="font-size: 2.4rem; color: var(--primary-gold); transform: rotate(3deg);"></i>
+                    </div>
+                    <h4>Ciência Aplicada</h4>
+                    <p class="text-muted">Aprenda janelas de sono e sinais de cansaço para agir no minuto exato.</p>
+                </div>
+                <div class="learn-card glass-card">
+                    <div style="width: 90px; height: 90px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 1.5rem; box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); transform: rotate(3deg);">
+                        <i class="fas fa-clock" style="font-size: 2.4rem; color: var(--primary-gold); transform: rotate(-3deg);"></i>
+                    </div>
+                    <h4>Rotina Consistente</h4>
+                    <p class="text-muted">Crie um ritual noturno previsível que seu bebê vai aprender a amar.</p>
+                </div>
+            </div>
+
+            <a href="#comprar" class="btn-cta">Desbloquear O Guia Definitivo</a>
+        </div>
+    </section>
+
+    <!-- 5. Testimonials -->
+    <section class="testimonials-section">
+        <div class="container fade-in">
+            <div class="text-center mx-auto" style="max-width: 800px;">
+                <h2 class="text-gradient-dark" style="font-size: 2.5rem; margin-bottom: 1rem;">Histórias de Quem Mudou
+                    de Vida</h2>
+                <p style="font-size: 1.1rem; font-weight: 500;">Mães reais que saíram da exaustão extrema para noites
+                    inteiras de sono.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-item">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Parecia milagre! Em menos de 4 dias aplicando o passo a passo, meu filho começou a dormir 8
+                        horas seguidas. Finalmente consigo descansar e me sentir viva."</p>
+                    <h5>— Mariana S.</h5>
+                </div>
+                <div class="testimonial-item">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Eu achava impossível melhorar o sono de gêmeos, mas as técnicas são tão lógicas que tudo fez
+                        sentido. Foi um verdadeiro divisor de águas aqui em casa."</p>
+                    <h5>— Gabriela L.</h5>
+                </div>
+                <div class="testimonial-item">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"As dicas sobre o ambiente e a massagem de relaxamento mudaram nossa rotina. Eu estava à beira do
+                        colapso e hoje temos paz ao entardecer."</p>
+                    <h5>— Clara R.</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Bonuses -->
+    <section class="bonuses-section">
+        <div class="container fade-in">
+            <div class="text-center">
+                <h2>Presentes Exclusivos <br><span class="text-gradient">Para Quem Adquirir o Guia</span></h2>
+                <p class="text-muted mt-4 font-size: 1.1rem">Materiais práticos para acelerar ainda mais os seus
+                    resultados.</p>
+            </div>
+
+            <div class="bonus-list mx-auto" style="max-width: 900px;">
+                <div class="bonus-item glass-card">
+                    <div class="bonus-icon-wrapper">
+                        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 40px rgba(245, 158, 11, 0.15); transform: rotate(-3deg);">
+                            <i class="fas fa-clipboard-check" style="font-size: 4.5rem; color: var(--primary-gold); transform: rotate(3deg); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));"></i>
+                        </div>
+                    </div>
+                    <div class="bonus-content">
+                        <span class="bonus-tag">PRESENTE 01</span>
+                        <h4>Checklist do Ambiente Perfeito</h4>
+                        <p>Um guia visual super prático para ajustar cada detalhe do quarto do seu bebê, garantindo que
+                            ele tenha o cenário ideal para não despertar à noite.</p>
+                    </div>
+                </div>
+
+                <div class="bonus-item glass-card">
+                    <div class="bonus-icon-wrapper">
+                        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 40px rgba(245, 158, 11, 0.15); transform: rotate(3deg);">
+                            <i class="fas fa-spa" style="font-size: 4.5rem; color: var(--primary-gold); transform: rotate(-3deg); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));"></i>
+                        </div>
+                    </div>
+                    <div class="bonus-content">
+                        <span class="bonus-tag">PRESENTE 02</span>
+                        <h4>Guia de Técnicas de Relaxamento</h4>
+                        <p>O exato passo a passo de massagens relaxantes, uso de ruídos e preparações que vão "desligar"
+                            o seu bebê de forma amorosa para o ritual noturno.</p>
+                    </div>
+                </div>
+
+                <div class="bonus-item glass-card">
+                    <div class="bonus-icon-wrapper">
+                        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 40px rgba(245, 158, 11, 0.15); transform: rotate(-3deg);">
+                            <i class="fas fa-calendar-alt" style="font-size: 4.5rem; color: var(--primary-gold); transform: rotate(3deg); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));"></i>
+                        </div>
+                    </div>
+                    <div class="bonus-content">
+                        <span class="bonus-tag">PRESENTE 03</span>
+                        <h4>Planejador de Rotina Personalizado</h4>
+                        <p>Material em PDF para você organizar as sonecas e os horários de alimentação, construindo a
+                            previsibilidade que todo bebê precisa para dormir melhor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mega Bônus Especial Completo -->
+            <div class="mega-bonus-card glass-card fade-in" style="margin-top: 5rem; border: 2px solid var(--primary-gold); padding: 4rem 3rem; background: rgba(15, 23, 42, 0.7); position: relative; overflow: hidden; box-shadow: 0 0 50px rgba(245, 158, 11, 0.15); max-width: 950px; margin-inline: auto;">
+                
+                <!-- Glow Effect background -->
+                <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: rgba(245, 158, 11, 0.2); filter: blur(120px); border-radius: 50%; z-index: 0; pointer-events: none;"></div>
+
+                <div style="position: relative; z-index: 1;">
+                    <!-- Promoção Limitada Badge -->
+                    <div class="text-center" style="margin-bottom: 2rem;">
+                        <span style="display: inline-block; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.5); color: var(--primary-gold); padding: 0.6rem 1.8rem; border-radius: 50px; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">
+                            🚨 ATENÇÃO: Oferta Exclusiva para HOJE
+                        </span>
+                    </div>
+
+                    <h2 class="text-center" style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 2.5rem; line-height: 1.3;">
+                        Compre O Código do Sono e <br><span class="text-gradient">Ganhe Grátis o Kit Materno Completo</span>
+                    </h2>
+
+                    <div class="text-center" style="margin-bottom: 3.5rem;">
+                        <h3 class="text-gradient" style="font-size: clamp(1.4rem, 2.5vw, 1.8rem); margin-bottom: 0.8rem; font-family: 'Outfit', sans-serif;">O melhor kit com tudo que uma mãe de primeira viagem tem que ter</h3>
+                        <p style="color: #fff; font-size: 1.2rem; font-weight: 400;">Guias Práticos e Essenciais na Palma da Sua Mão!</p>
+                    </div>
+
+                    <!-- Representação Visual do Bônus Premium -->
+                    <div style="margin-bottom: 4.5rem; text-align: center; position: relative;">
+                        <!-- Efeito de Luz Dourada Atrás da Imagem -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; background: var(--primary-gold); filter: blur(120px); opacity: 0.15; border-radius: 50%; z-index: 0; pointer-events: none;"></div>
+                        <!-- Mockup com Animação Flutuante -->
+                        <img src="assets/mockup geral-2.png" alt="Kit Materno Completo" class="floating" style="max-width: 100%; width: 750px; height: auto; margin: 0 auto; position: relative; z-index: 1; filter: drop-shadow(0 25px 40px rgba(0,0,0,0.6));">
+                    </div>
+
+                    <!-- Grid de 6 Guias -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left; margin-bottom: 4rem;">
+                        
+                        <!-- Guia 1 -->
+                        <div style="display: flex; align-items: center; gap: 1.2rem; background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                            <div style="background: rgba(245, 158, 11, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fas fa-heart-broken" style="color: var(--primary-gold); font-size: 1.4rem;"></i>
+                            </div>
+                            <h4 style="font-size: 1.1rem; margin: 0; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.3;">Diga Não à Depressão Pós-Parto<br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif;">Blinde sua mente</span></h4>
+                        </div>
+
+                        <!-- Guia 2 -->
+                        <div style="display: flex; align-items: center; gap: 1.2rem; background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                            <div style="background: rgba(245, 158, 11, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fas fa-notes-medical" style="color: var(--primary-gold); font-size: 1.4rem;"></i>
+                            </div>
+                            <h4 style="font-size: 1.1rem; margin: 0; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.3;">Primeiros Socorros para Bebês<br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif;">O controle nas suas mãos</span></h4>
+                        </div>
+
+                        <!-- Guia 3 -->
+                        <div style="display: flex; align-items: center; gap: 1.2rem; background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                            <div style="background: rgba(245, 158, 11, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fas fa-baby" style="color: var(--primary-gold); font-size: 1.4rem;"></i>
+                            </div>
+                            <h4 style="font-size: 1.1rem; margin: 0; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.3;">Guia de Engasgo<br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif;">Saiba o que fazer em 30 seg.</span></h4>
+                        </div>
+
+                        <!-- Guia 4 -->
+                        <div style="display: flex; align-items: center; gap: 1.2rem; background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                            <div style="background: rgba(245, 158, 11, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fas fa-shield-virus" style="color: var(--primary-gold); font-size: 1.4rem;"></i>
+                            </div>
+                            <h4 style="font-size: 1.1rem; margin: 0; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.3;">Salvando dos Refluxos<br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif;">Ajuste a posição e durma em paz</span></h4>
+                        </div>
+
+                        <!-- Guia 5 -->
+                        <div style="display: flex; align-items: center; gap: 1.2rem; background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                            <div style="background: rgba(245, 158, 11, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fas fa-female" style="color: var(--primary-gold); font-size: 1.4rem;"></i>
+                            </div>
+                            <h4 style="font-size: 1.1rem; margin: 0; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.3;">Não se Perca de Si<br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif;">Resgate sua identidade</span></h4>
+                        </div>
+
+                        <!-- Guia 6 -->
+                        <div style="display: flex; align-items: center; gap: 1.2rem; background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                            <div style="background: rgba(245, 158, 11, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fas fa-spa" style="color: var(--primary-gold); font-size: 1.4rem;"></i>
+                            </div>
+                            <h4 style="font-size: 1.1rem; margin: 0; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.3;">Autocuidado Caseiro<br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif;">Praticidade no seu dia</span></h4>
+                        </div>
+                    </div>
+
+                    <!-- Seção de Argumentos (Pill-style) -->
+                    <h4 style="font-size: 1.35rem; margin-bottom: 1.5rem; text-align: center; color: #fff;">Por que você precisa deste kit agora:</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 4rem; justify-content: center;">
+                        <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 50px; font-size: 1rem; color: var(--text-main);">
+                            <strong class="text-gradient"><i class="fas fa-clock" style="margin-right: 6px;"></i> Tempo:</strong> Pare de gastar horas pesquisando informações desencontradas na internet.
+                        </span>
+                        <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 50px; font-size: 1rem; color: var(--text-main);">
+                            <strong class="text-gradient"><i class="fas fa-bolt" style="margin-right: 6px;"></i> Rapidez:</strong> Soluções rápidas e eficazes na palma da sua mão para crises.
+                        </span>
+                        <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 50px; font-size: 1rem; color: var(--text-main);">
+                            <strong class="text-gradient"><i class="fas fa-smile" style="margin-right: 6px;"></i> Felicidade:</strong> Menos suor e esforço para seguir os guias fáceis e diretos.
+                        </span>
+                    </div>
+
+                    <!-- Comparativo -->
+                    <div style="margin-bottom: 4rem;">
+                        <h4 style="font-size: 1.6rem; margin-bottom: 2rem; text-align: center; font-family: 'Outfit', sans-serif; color: #fff;">A Diferença é Brutal</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                            <!-- Sem Kit -->
+                            <div style="background: rgba(255, 100, 100, 0.05); border: 1px solid rgba(255, 100, 100, 0.15); padding: 2rem 1.5rem; border-radius: 20px; text-align: center;">
+                                <div style="width: 45px; height: 45px; background: rgba(255, 100, 100, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                                    <i class="fas fa-times" style="color: #ff6b6b; font-size: 1.2rem;"></i>
+                                </div>
+                                <h5 style="color: #ff6b6b; margin-bottom: 1rem; font-size: 1.2rem; font-family: 'Outfit', sans-serif;">Sem o Kit</h5>
+                                <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.5;">Mãe desesperada, ouvindo pitacos, exausta.</p>
+                            </div>
+                            
+                            <!-- Com Kit -->
+                            <div style="background: var(--bg-deep); border: 2px solid var(--primary-gold); padding: 2rem 1.5rem; border-radius: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-glow);">
+                                <div style="width: 45px; height: 45px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                                    <i class="fas fa-check" style="color: #000; font-size: 1.2rem;"></i>
+                                </div>
+                                <h5 class="text-gradient" style="margin-bottom: 1rem; font-size: 1.2rem; font-family: 'Outfit', sans-serif;">Com o Kit</h5>
+                                <p style="font-size: 1.05rem; color: #fff; line-height: 1.5;">Mãe confiante, segura, preparada para tudo.</p>
+                                <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--primary-gold); filter: blur(40px); opacity: 0.15;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prova Social Minimalista -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3.5rem; text-align: left;">
+                        <div style="padding-left: 1.5rem; border-left: 3px solid var(--primary-gold);">
+                            <p style="font-style: italic; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.5;">"Eu estava desesperada com o refluxo do meu filho. O guia me salvou!"</p>
+                            <p style="font-weight: 700; color: #fff; font-size: 0.95rem; font-family: 'Outfit', sans-serif;">— Ana</p>
+                        </div>
+                        <div style="padding-left: 1.5rem; border-left: 3px solid var(--primary-gold);">
+                            <p style="font-style: italic; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.5;">"Recuperei minha confiança e sei exatamente o que fazer em emergências. Indispensável!"</p>
+                            <p style="font-weight: 700; color: #fff; font-size: 0.95rem; font-family: 'Outfit', sans-serif;">— Carla</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA Bônus -->
+                    <div class="text-center mt-8">
+                        <a href="#comprar" class="btn-cta text-uppercase font-weight-bold" style="font-size: clamp(1rem, 2.5vw, 1.2rem); padding: 1.5rem 2.5rem; width: 100%; max-width: 650px;">Quero Dormir Melhor E Ganhar Meu Kit Grátis AGORA</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. Pricing Section -->
+    <section id="comprar" class="pricing-section">
+        <div class="container fade-in">
+            <div class="pricing-card">
+                <h3>O Seu Acesso à <span class="text-gradient">Paz e ao Descanso</span></h3>
+
+                <img src="assets/mockup.png"
+                    alt="Pacote Completo" class="pricing-image">
+
+                <div class="value-stack">
+                    <h4>O Que Você Vai Levar:</h4>
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i> <span>O Guia Definitivo do Sono Tranquilo</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i> <span><strong>Bônus 1:</strong> Checklist de Ambiente</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i> <span><strong>Bônus 2:</strong> Guia de Relaxamento</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i> <span><strong>Bônus 3:</strong> Planejador de Rotinas</span>
+                    </div>
+                    <div class="value-item" style="background: rgba(245, 158, 11, 0.1); padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.2); transform: translateX(-10px);">
+                        <i class="fas fa-gift" style="color: var(--primary-gold);"></i> <span><strong>Bônus Mega:</strong> Kit Materno Completo (6 Guias)</span>
+                    </div>
+                    <div class="value-item mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                        <i class="fas fa-shield-alt" style="color: var(--primary-gold);"></i> <span>Garantia
+                            incondicional de 7 dias</span>
+                    </div>
+                </div>
+
+                <div class="strike-price">De R$ 97,00 por apenas</div>
+                <div class="final-price"><span>R$</span> 37<span style="font-size: 2rem;">,00</span></div>
+                <p style="color: #10B981; font-weight: 600; margin-bottom: 2rem; font-size: 1.2rem;">Pagamento único,
+                    acesso imediato.</p>
+
+                <a href="#" class="btn-cta">SIM! QUERO DORMIR MELHOR HOJE</a>
+
+                <div class="garantia">
+                    <i class="fas fa-lock"></i> Compra 100% Segura. Você tem 7 dias de Garantia.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Micro-animations for scroll visibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+
+</html>
