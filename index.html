@@ -786,6 +786,11 @@
             .learn-grid {
                 grid-template-columns: 1fr;
             }
+
+            .mega-bonus-card {
+                padding: 2.5rem 1.5rem !important;
+                margin-top: 3rem !important;
+            }
         }
     </style>
 </head>
@@ -1224,7 +1229,7 @@
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15
+                threshold: 0.05
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
