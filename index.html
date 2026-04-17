@@ -246,6 +246,38 @@
             border-color: rgba(255, 255, 255, 0.15);
         }
 
+        /* Nav Header */
+        .main-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 45px;
+            }
+            .main-header {
+                padding: 1rem 0;
+            }
+        }
+
         /* ================= SECTIONS ================= */
 
         /* 1. Hero Section */
@@ -805,6 +837,12 @@
 </head>
 
 <body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <img src="assets/logo.png" alt="Mamãe no Comando" class="logo-img">
+        </div>
+    </header>
 
     <!-- 1. Hero Section -->
     <section class="hero text-center">
