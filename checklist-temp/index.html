@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Mestre: O Ambiente de Sono Perfeito | Mamãe no Comando</title>
+
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-deep: #070B14;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --primary-gold: #F59E0B;
+            --primary-orange: #EA580C;
+            --gradient-gold: linear-gradient(135deg, #FCD34D, #F59E0B);
+            --gradient-brand: linear-gradient(135deg, #F59E0B, #EA580C);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --shadow-glow: 0 0 40px rgba(245, 158, 11, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 1.5rem;
+            background-image: radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08), transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(234, 88, 12, 0.08), transparent 40%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        /* Branding Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .brand-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Card Section */
+        .section-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 28px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.25);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .section-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            flex-shrink: 0;
+        }
+
+        /* Checklist Styles */
+        .checklist {
+            list-style: none;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.2rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .check-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .checkbox-container {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 28px;
+            width: 28px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            border-color: var(--primary-gold);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background: var(--gradient-gold);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 10px;
+            top: 5px;
+            width: 6px;
+            height: 12px;
+            border: solid #070B14;
+            border-width: 0 2.5px 2.5px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .check-content {
+            flex: 1;
+        }
+
+        .check-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 0.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .check-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: block;
+            line-height: 1.5;
+        }
+
+        .checkbox-container input:checked ~ .check-content .check-title {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        /* Essential Pro Info (Non-checkable) */
+        .pro-note {
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            border: 1px dashed rgba(245, 158, 11, 0.2);
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .pro-note i {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+        }
+
+        .pro-note p {
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            font-style: italic;
+        }
+
+        /* Action Footer */
+        .action-footer {
+            margin-top: 5rem;
+            text-align: center;
+            padding-bottom: 6rem;
+        }
+
+        .btn-pdf {
+            background: var(--gradient-brand);
+            color: #fff;
+            padding: 1.3rem 3.5rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1.2rem;
+            box-shadow: 0 10px 30px rgba(234, 88, 12, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(234, 88, 12, 0.5);
+        }
+
+        footer {
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        /* Print Mode */
+        @media print {
+            * { color: #000 !important; background: transparent !important; box-shadow: none !important; border-color: #000 !important;}
+            body { padding: 0.5cm; background: #fff !important; }
+            .section-card { border: 2px solid #000 !important; break-inside: avoid; border-radius: 0; padding: 1.5rem !important; margin-bottom: 1cm; }
+            .btn-pdf, .brand-header { display: none !important; }
+            h1 { font-size: 2.2rem !important; background: none !important; -webkit-text-fill-color: #000 !important; }
+            .checkmark { border: 2px solid #000 !important; }
+            .pro-note { border: 1px solid #000 !important; background: none !important; }
+        }
+
+        @media (max-width: 640px) {
+            .section-card { padding: 2rem 1.5rem; }
+            .section-title { font-size: 1.5rem; }
+            .check-title { font-size: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="brand-header">
+            <div class="brand-name">Mamãe no Comando</div>
+            <div style="width: 50px; height: 3px; background: var(--gradient-brand); margin: 0 auto; border-radius: 10px;"></div>
+        </div>
+
+        <header>
+            <h1>Checklist: O Ambiente Sagrado</h1>
+            <p class="subtitle">O checklist definitivo para preparar o quarto do seu bebê para o sono mais profundo e seguro que ele já teve.</p>
+        </header>
+
+        <!-- 1. Iluminação -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon"><i class="fas fa-moon"></i></div>
+                1. Domínio da Melatonina
+            </div>
+            <div class="checklist">
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Teste do Blackout de Dia</span>
+                        <span class="check-desc">Entre no quarto ao meio-dia. Se você consegue ver a própria mão, precisa de mais vedação (cortinas ou tecidos colados).</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Fita Isolante nos LEDs</span>
+                        <span class="check-desc">Cubra todas as luzinhas azuis/verdes de babá eletrônica, umidificador ou ar-condicionado.</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Lâmpadas Âmbar (<3000K)</span>
+                        <span class="check-desc">Troque luzes brancas por lâmpadas quentes para todas as interações noturnas.</span>
+                    </div>
+                </label>
+            </div>
+            <div class="pro-note">
+                <i class="fas fa-lightbulb"></i>
+                <p>A luz azul bloqueia a produção de melatonina em até 90%. Use apenas luzes que lembrem a cor do fogo para trocas de fralda.</p>
+            </div>
+        </div>
+
+        <!-- 2. Higiene Térmica -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon"><i class="fas fa-snowflake"></i></div>
+                2. Controle Termo-Respiratório
+            </div>
+            <div class="checklist">
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Temperatura "Doce" (20°C - 22°C)</span>
+                        <span class="check-desc">O cérebro precisa de resfriamento leve para atingir o sono REM profundo.</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Higiene das Mucosas (40-60%)</span>
+                        <span class="check-desc">Se o quarto for seco demais, o bebê acorda com sede ou obstrução nasal. Use um umidificador equilibrado.</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Vestimenta em Camadas (TOG)</span>
+                        <span class="check-desc">Prefira sacos de dormir de algodão orgânico que permitem a pele respirar.</span>
+                    </div>
+                </label>
+            </div>
+            <div class="pro-note">
+                <i class="fas fa-thermometer-half"></i>
+                <p>Teste da Nuca: Se a nuca estiver quente e suada, o bebê está superaquecido. Mãos e pés levemente frios são normais.</p>
+            </div>
+        </div>
+
+        <!-- 3. Escudo Acústico -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon"><i class="fas fa-wind"></i></div>
+                3. Camuflagem Sonora Profunda
+            </div>
+            <div class="checklist">
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Posicionamento Estratégico do Ruído</span>
+                        <span class="check-desc">Máquina de ruído colocada entre o berço e a janela/porta (a fonte do barulho externo).</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Som Contínuo e Sem Loop</span>
+                        <span class="check-desc">Sons que "clicam" ou acabam de repente causam despertares nos ciclos de 40 minutos.</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- 4. Segurança do Berço -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon"><i class="fas fa-shield-alt"></i></div>
+                4. Segurança e Minimalismo
+            </div>
+            <div class="checklist">
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Padrão "Berço Vazio"</span>
+                        <span class="check-desc">Remover protetores, travesseiros, bichos de pelúcia e mantas soltas.</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Teste da Firmeza</span>
+                        <span class="check-desc">O colchão deve ser firme e não afundar com o peso do bebê.</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Organização de Fios e Cenas</span>
+                        <span class="check-desc">Babás eletrônicas e fios de umidificador devem estar a pelo menos 1 metro de distância do berço.</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- 5. O Olfato -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon"><i class="fas fa-leaf"></i></div>
+                5. Ancoragem Olfativa
+            </div>
+            <div class="checklist">
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Essência de Lavanda (Opcional)</span>
+                        <span class="check-desc">Utilizar no difusor ultra-sônico longe do bebê apenas nos 30 min iniciais.</span>
+                    </div>
+                </label>
+                <label class="check-item">
+                    <div class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">O Cheirinho da Mãe</span>
+                        <span class="check-desc">Durma uma noite com o lençol do berço antes de colocá-lo para que o bebê sinta sua presença através do olfato.</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="action-footer">
+            <button class="btn-pdf" onclick="window.print()">
+                <i class="fas fa-file-pdf"></i> Salvar Checklist em PDF
+            </button>
+            <button class="btn-pdf" onclick="resetChecklist()" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); box-shadow: none; margin-top: 1rem; font-size: 0.9rem; padding: 0.8rem 2rem;">
+                <i class="fas fa-undo"></i> Resetar Checklist
+            </button>
+            <footer>
+                &copy; 2024 Mamãe no Comando. Conteúdo exclusivo para alunas.
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Função para salvar o estado do checklist
+        function saveChecklist() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const states = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('checklistData_7458', JSON.stringify(states));
+        }
+
+        // Função para carregar o estado salvo
+        function loadChecklist() {
+            const savedStates = localStorage.getItem('checklistData_7458');
+            if (savedStates) {
+                const states = JSON.parse(savedStates);
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach((cb, i) => {
+                    if (states[i] !== undefined) {
+                        cb.checked = states[i];
+                    }
+                });
+            }
+        }
+
+        // Função para resetar tudo
+        function resetChecklist() {
+            if (confirm('Deseja realmente limpar todas as marcações do checklist?')) {
+                localStorage.removeItem('checklistData_7458');
+                location.reload();
+            }
+        }
+
+        // Event listener para mudanças
+        document.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                saveChecklist();
+            }
+        });
+
+        // Carrega ao iniciar
+        document.addEventListener('DOMContentLoaded', loadChecklist);
+    </script>
+
+</body>
+
+</html>
